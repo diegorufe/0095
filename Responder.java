@@ -1,6 +1,7 @@
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 /**
  * The responder class represents a response generator object.
  * It is used to generate an automatic response to an input string.
@@ -40,24 +41,16 @@ public class Responder
      * Generate a response.
      * @return   A string that should be displayed as the response
      */
-    public String generateResponse(String palabra)
+    public String generateResponse(HashSet<String> palabras)
     {   
         String respuesta = null;
-        /*if(palabra.contains("CPU")){
-            respuesta ="¿Cual es su tipo de CPU?";
-        }else if(palabra.contains("RAM")){ 
-            respuesta = "¿Que velocidad tiene su memoria RAM?";
-        }else if(palabra.contains("BIOS")){
-            respuesta = "¿Ha reiniciado a los valores de fabrica de la BIOS?";
-        }else if(palabra.contains("HDD")){
-            respuesta = "¿De cuanto espacio consta su HDD?";
-        }else{
+        for(String palabra:palabras){
+            if(respuestas2.containsKey(palabra.toUpperCase())){
+                respuesta= respuestas2.get(palabra.toUpperCase());
+            }
+        }
+        if(respuesta == null){
             respuesta= respuestas.get(aleatorio.nextInt(respuestas.size()));
-        }*/
-        if(respuestas2.containsKey(palabra.toUpperCase())){
-             respuesta= respuestas2.get(palabra.toUpperCase());
-        }else{
-             respuesta= respuestas.get(aleatorio.nextInt(respuestas.size()));
         }
         return respuesta;
     }
