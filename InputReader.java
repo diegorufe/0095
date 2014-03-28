@@ -30,7 +30,8 @@ public class InputReader
     {
         System.out.print("> ");         // print prompt
         String inputLine = reader.nextLine();
-
-        return inputLine;
+        String[] palabras  = inputLine.split(" ");
+        String primeraPalabra = palabras[0];
+        return primeraPalabra;
     }
 }
