@@ -14,6 +14,7 @@ public class Responder
     Random aleatorio;
     private ArrayList<String> respuestas;
     private HashMap<HashSet, String>respuestas2;
+    private  ArrayList<String> copiaRespuestas;
     /**
      * Construct a Responder - nothing to do
      */
@@ -23,6 +24,7 @@ public class Responder
         respuestas = new ArrayList<String>();
         respuestas2= new HashMap<HashSet,String>();
         HashSet cpu = new HashSet();
+        copiaRespuestas = new ArrayList<String>();
         cpu.add("CPU");
         cpu.add("INTEL");
         HashSet ram = new HashSet();
@@ -49,6 +51,7 @@ public class Responder
         for(int i =0;i <respuestasDescritas.length;i++){
             respuestas.add(respuestasDescritas[i]);
         }
+        copiaRespuestas = (ArrayList) respuestas.clone();
     }
 
     /**
@@ -61,8 +64,12 @@ public class Responder
         if(respuestas2.containsKey(palabras)){
                 respuesta= respuestas2.get(palabras);
         }
-        else{
-            respuesta= respuestas.get(aleatorio.nextInt(respuestas.size()));
+        else if(copiaRespuestas.size() >= 1){
+            int numeroAleatorio= aleatorio.nextInt(copiaRespuestas.size());
+            respuesta= copiaRespuestas.get(numeroAleatorio);
+            copiaRespuestas.remove(numeroAleatorio);
+        }else{
+            respuesta = "no he entendido la frase";
         }
         return respuesta;
     }
