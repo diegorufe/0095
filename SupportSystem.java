@@ -38,7 +38,7 @@ public class SupportSystem
 
         while(!finished) {
             HashSet<String> imput = reader.getInput();
-            if(imput.contains("bye")) {
+            if(imput.contains("BYE")) {
                 finished = true;
             }
             else {

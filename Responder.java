@@ -13,7 +13,7 @@ public class Responder
 {
     Random aleatorio;
     private ArrayList<String> respuestas;
-    private HashMap<String, String>respuestas2;
+    private HashMap<HashSet, String>respuestas2;
     /**
      * Construct a Responder - nothing to do
      */
@@ -21,11 +21,25 @@ public class Responder
     {
         aleatorio = new Random();
         respuestas = new ArrayList<String>();
-        respuestas2= new HashMap<String,String>();
-        respuestas2.put("CPU","¿Cual es su tipo de CPU?");
-        respuestas2.put("RAM","¿Que velocidad tiene su memoria RAM?");
-        respuestas2.put("BIOS","¿Ha reiniciado a los valores de fabrica de la BIOS?");
-        respuestas2.put("HDD","¿De cuanto espacio consta su HDD?");
+        respuestas2= new HashMap<HashSet,String>();
+        HashSet cpu = new HashSet();
+        cpu.add("CPU");
+        cpu.add("INTEL");
+        HashSet ram = new HashSet();
+        ram.add("RAM");
+        ram.add("KINGSTOM");
+        HashSet bios = new HashSet();
+        bios.add("BIOS");
+        bios.add("ASUS");
+        bios.add("POWER");
+        HashSet hdd = new HashSet();
+        hdd.add("HDD");
+        hdd.add("SAMSUNG");
+        //respuestas2 añadir key y values
+        respuestas2.put(cpu,"¿Cual es su tipo de CPU?");
+        respuestas2.put(ram,"¿Que velocidad tiene su memoria RAM?");
+        respuestas2.put(bios,"¿Ha reiniciado a los valores de fabrica de la BIOS?");
+        respuestas2.put(hdd,"¿De cuanto espacio consta su HDD?");
         String[] respuestasDescritas = new String[5];
         respuestasDescritas[0] = "Describa su problema"; 
         respuestasDescritas[1] = "¿Esta seguro/a de que ese es su problema?";
@@ -44,12 +58,10 @@ public class Responder
     public String generateResponse(HashSet<String> palabras)
     {   
         String respuesta = null;
-        for(String palabra:palabras){
-            if(respuestas2.containsKey(palabra.toUpperCase())){
-                respuesta= respuestas2.get(palabra.toUpperCase());
-            }
+        if(respuestas2.containsKey(palabras)){
+                respuesta= respuestas2.get(palabras);
         }
-        if(respuesta == null){
+        else{
             respuesta= respuestas.get(aleatorio.nextInt(respuestas.size()));
         }
         return respuesta;

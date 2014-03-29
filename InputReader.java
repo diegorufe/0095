@@ -32,7 +32,7 @@ public class InputReader
         String inputLine = reader.nextLine();
         String[] palabras  = inputLine.split(" ");
         for(int i =0;i<palabras.length;i++){
-            conjuntoPalabras.add(palabras[i]);
+            conjuntoPalabras.add(palabras[i].toUpperCase());
         }
         return conjuntoPalabras;
     }
